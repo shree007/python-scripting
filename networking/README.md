@@ -1,4 +1,4 @@
-To work in os-module-code
+To work in networking
 
 $ pip3 install dnspython
 
