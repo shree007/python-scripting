@@ -7,7 +7,7 @@ def print_matched(directory_name,match_text):
     os.system(f'ls -l {directory_name} | grep {match_text}')
 
 def print_recursive(directory_name,match_text):
-    os.system(f'ls -l {directory_name} | grep {match_text}')
+    os.system(f'ls -ltr {directory_name} | grep {match_text}')
 
 if __name__ == '__main__':
   try:
