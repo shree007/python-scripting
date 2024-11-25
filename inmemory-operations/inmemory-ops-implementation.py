@@ -1,43 +1,54 @@
-class inMemory:
+class InMemory:
     def __init__(self):
         self.store = {}
 
     def add(self, key, value):
-        self.store[key]=value
-        print(f"key '{key}' has been added")
-        print("In memory after addition",self.store)
-    
+        self.store[key] = value
+        print(f"Key '{key}' has been added.")
+        print("In-memory after addition:", self.store)
+
     def get(self, key):
         if key in self.store:
-            return self.store[key]
-        print(f"key '{key}' is not found")
-        print("In memory after fetch",self.store)
-    
-    def delete(self,key):
+            print(f"Value for key '{key}': {self.store[key]}")
+        else:
+            print(f"Key '{key}' is not found.")
+        print("In-memory after fetch:", self.store)
+
+    def delete(self, key):
         if key in self.store:
             del self.store[key]
-            print(f"key '{key}' has been deleted")
-        print(f"key '{key}' has not found ")
-        print("In memory after delete",self.store)
+            print(f"Key '{key}' has been deleted.")
+        else:
+            print(f"Key '{key}' is not found.")
+        print("In-memory after delete:", self.store)
 
-def perform_db_ops(db_operation,key,value):
-     db = inMemory()
-     match db_operation:
+
+def perform_db_ops(db, db_operation, key, value=None):
+    match db_operation:
         case "add":
-            db.add(key,value)
+            db.add(key, value)
         case "get":
             db.get(key)
         case "delete":
-            deb.delete(key)
+            db.delete(key)
         case _:
-            print(f"Invalid '{db_operation}' in memory operations")
+            print(f"Invalid operation '{db_operation}'")
 
 
-if __name__ =='__main__':
-    try:
-        key = input("Enter key").strip()
-        value = input("Enter value").strip()
-        db_operation = input("Enter db operation you want to perform").strip()
-        perform_db_ops(db_operation,key,value)
-    except Exception as e:
-        print("Invalid operations", e)
+if __name__ == '__main__':
+    db = InMemory()
+    print("In-memory database is running. Type 'cancel' to exit.")
+
+    while True:
+        try:
+            db_operation = input("\nEnter operation (add/get/delete) or type 'cancel' to exit: ").strip().lower()
+            if db_operation == "cancel":
+                print("Exiting the in-memory database.")
+                break
+            key = input("Enter key: ").strip()
+            value = None
+            if db_operation == "add":
+                value = input("Enter value: ").strip()
+            perform_db_ops(db, db_operation, key, value)
+        except Exception as e:
+            print("Error:", e)
