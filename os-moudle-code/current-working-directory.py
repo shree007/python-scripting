@@ -1,9 +1,7 @@
 import os
 
+def get_current_directory():
+	print("Current directory is: ", os.getcwd())
 
-def driver():
-	print(os.getcwd())
-
-
-if "__name__" == "__main__":
-	driver()
+if __name__ == '__main__':
+	get_current_directory()
